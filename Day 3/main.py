@@ -12,7 +12,11 @@ def creat_item_prio() -> dict:
     return out
 
 def common_element(str1: str, str2:str) -> List[str]:
-    pass
+    set1 = set(str1)
+    set2 = set(str2)
+    return ''.join(
+        set(set1).intersection(set2)
+    )
 
 def split_string_by_half(input: str) -> List[str]:
     lenght = len(input)
