@@ -1,5 +1,7 @@
 import string
 from typing import List
+import math
+
 def creat_item_prio() -> dict:
     out = dict()
     alphabet_lower = list(string.ascii_lowercase)
@@ -10,7 +12,9 @@ def creat_item_prio() -> dict:
     return out
 
 def split_string_by_half(input: str) -> List[str]:
-    pass
+    lenght = len(input)
+    half_pos = math.floor(lenght/2)
+    return [input[:half_pos], input[half_pos:]]
 
 if __name__ == '__main__':
     print(creat_item_prio())
