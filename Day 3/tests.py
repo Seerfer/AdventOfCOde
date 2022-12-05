@@ -1,6 +1,6 @@
 import unittest
 
-from main import split_string_by_half, common_element
+from main import split_string_by_half, common_element, take_prio
 
 class Test(unittest.TestCase):
     def test_split_string_by_half(self):
@@ -13,12 +13,16 @@ class Test(unittest.TestCase):
     def test_common_element(self):
         str1 = "vJrwpWtwJgWr"
         str2 = "hcsFMMfFFhFp"
-        expeted = "p"
+        expected = "p"
         out = common_element(str1, str2)
-        self.assertEqual(expeted, out)
+        self.assertEqual(expected, out)
 
 
-
+    def test_take_prio(self):
+        symbol = "p"
+        out = take_prio(symbol)
+        expected = 16
+        self.assertEqual(expected, out)
 
 if __name__ == '__main__':
     unittest.main()

@@ -18,6 +18,10 @@ def common_element(str1: str, str2:str) -> List[str]:
         set(set1).intersection(set2)
     )
 
+def take_prio(symbol: str) -> int:
+    pass
+
+
 def split_string_by_half(input: str) -> List[str]:
     lenght = len(input)
     half_pos = math.floor(lenght/2)
