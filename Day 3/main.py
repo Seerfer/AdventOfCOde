@@ -14,7 +14,9 @@ def creat_item_prio() -> dict:
 
 
 def common_element(*args) -> str:
-    pass
+    sets = [set(el) for el in args]
+    return  "".join(sets[0].intersection(*sets[1:]))
+
 
 
 def take_prio(symbol: str) -> int:
