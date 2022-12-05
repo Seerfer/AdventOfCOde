@@ -11,6 +11,9 @@ def creat_item_prio() -> dict:
         out[letter] = prio
     return out
 
+def common_element(str1: str, str2:str) -> List[str]:
+    pass
+
 def split_string_by_half(input: str) -> List[str]:
     lenght = len(input)
     half_pos = math.floor(lenght/2)
