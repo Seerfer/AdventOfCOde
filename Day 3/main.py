@@ -32,11 +32,14 @@ def split_string_by_half(input_str: str) -> List[str]:
 
 if __name__ == '__main__':
     result = 0
+    tmp = list()
     with open("input", "r") as f:
-        while line:= f.readline():
-            splited = split_string_by_half(line.strip())
-            str1, str2 = splited[0], splited[1]
-            common = common_element(str1, str2)
-            prio = take_prio(common)
-            result += prio
+        while line:= f.readline().strip():
+            tmp.append(line)
+            if len(tmp) == 3:
+                common = common_element(tmp[0], tmp[1], tmp[2])
+                prio = take_prio(common)
+                result += prio
+                tmp = []
+
     print(result)
