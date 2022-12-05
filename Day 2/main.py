@@ -3,7 +3,13 @@ from typing import List
 
 def translate_to_shape(symbol: str) -> str:
     translation = {"X": "r", "Y": "p", "Z": "s",
-                   "A": "r", "B": "p", "C": "s"}
+                   "A": "r", "B": "p", "C": "s",
+                   "r": "r", "p": "p", "s": "s"}
+    return translation.get(symbol)
+
+
+def translate_to_result(symbol: str) -> str:
+    translation = {"X": "l", "Y": "d", "Z": "w"}
     return translation.get(symbol)
 
 
@@ -46,11 +52,24 @@ def calculate_round(chs1: str, chs2: str) -> dict:
     return points
 
 
+def choose_shape(result: str, oponent_shape: str) -> str:
+    result_dict = {
+        "w": {"r": "p", "p": "s", "s": "r"},
+        "d": {"r": "r", "p": "p", "s": "s"},
+        "l": {"r": "s", "p": "r", "s": "p"}
+    }
+
+    return result_dict.get(result).get(oponent_shape)
+
+
 strategies = read_startegies("input")
 my_points = 0
 for strategy in strategies:
     splited = strategy.split()
-    result = calculate_round(splited[1], splited[0])
+    result = translate_to_result(splited[1])
+    oponent_shape = translate_to_shape(splited[0])
+    my_shape = choose_shape(result, oponent_shape)
+    result = calculate_round(my_shape, oponent_shape)
     my_points += result["pl1"]
 
 print(my_points)
