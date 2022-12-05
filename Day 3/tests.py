@@ -17,6 +17,14 @@ class Test(unittest.TestCase):
         out = common_element(str1, str2)
         self.assertEqual(expected, out)
 
+    def test_common_element_three_elements(self):
+        str1 = "vJrwpWtwJgWrhcsFMMfFFhFp"
+        str2 = "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"
+        str3 = "PmmdzqPrVvPwwTWBwg"
+        expected = "r"
+        out = common_element(str1, str2, str3)
+        self.assertEqual(expected, out)
+
 
     def test_take_prio(self):
         symbol = "p"

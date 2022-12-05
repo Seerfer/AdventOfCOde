@@ -13,10 +13,8 @@ def creat_item_prio() -> dict:
     return out
 
 
-def common_element(str1: str, str2: str) -> str:
-    set1 = set(str1)
-    set2 = set(str2)
-    return ''.join(set(set1).intersection(set2))
+def common_element(*args) -> str:
+    pass
 
 
 def take_prio(symbol: str) -> int:
