@@ -17,9 +17,9 @@ def get_result(choose_player1: str, choose_player2: str) -> str:
         return "d"
     winners_dict = {"r": "s", "p": "r", "s": "p"}
     if choose_player1 == winners_dict.get(choose_player2):
-        return "pl1"
-    else:
         return "pl2"
+    else:
+        return "pl1"
 
 
 def read_startegies(filename: str) -> List[str]:
@@ -51,6 +51,6 @@ my_points = 0
 for strategy in strategies:
     splited = strategy.split()
     result = calculate_round(splited[1], splited[0])
-    my_points += result["pl2"]
+    my_points += result["pl1"]
 
 print(my_points)
