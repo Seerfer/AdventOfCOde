@@ -31,4 +31,12 @@ def split_string_by_half(input_str: str) -> List[str]:
 
 
 if __name__ == '__main__':
-    print(creat_item_prio())
+    result = 0
+    with open("input", "r") as f:
+        while line:= f.readline():
+            splited = split_string_by_half(line.strip())
+            str1, str2 = splited[0], splited[1]
+            common = common_element(str1, str2)
+            prio = take_prio(common)
+            result += prio
+    print(result)
