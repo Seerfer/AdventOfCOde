@@ -22,6 +22,6 @@ if __name__ == '__main__':
             range1, range2 = splited[0], splited[1]
             section1 = get_full_list_of_sections(range1)
             section2 = get_full_list_of_sections(range2)
-            if check_if_contains(section1, section2):
+            if check_if_overlap_exists(section1, section2):
                 result += 1
     print(result)
