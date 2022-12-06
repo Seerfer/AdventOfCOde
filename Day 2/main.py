@@ -2,9 +2,17 @@ from typing import List
 
 
 def translate_to_shape(symbol: str) -> str:
-    translation = {"X": "r", "Y": "p", "Z": "s",
-                   "A": "r", "B": "p", "C": "s",
-                   "r": "r", "p": "p", "s": "s"}
+    translation = {
+        "X": "r",
+        "Y": "p",
+        "Z": "s",
+        "A": "r",
+        "B": "p",
+        "C": "s",
+        "r": "r",
+        "p": "p",
+        "s": "s",
+    }
     return translation.get(symbol)
 
 
@@ -56,7 +64,7 @@ def choose_shape(result: str, oponent_shape: str) -> str:
     result_dict = {
         "w": {"r": "p", "p": "s", "s": "r"},
         "d": {"r": "r", "p": "p", "s": "s"},
-        "l": {"r": "s", "p": "r", "s": "p"}
+        "l": {"r": "s", "p": "r", "s": "p"},
     }
 
     return result_dict.get(result).get(oponent_shape)

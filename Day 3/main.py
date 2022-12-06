@@ -15,8 +15,7 @@ def creat_item_prio() -> dict:
 
 def common_element(*args) -> str:
     sets = [set(el) for el in args]
-    return  "".join(sets[0].intersection(*sets[1:]))
-
+    return "".join(sets[0].intersection(*sets[1:]))
 
 
 def take_prio(symbol: str) -> int:
@@ -30,11 +29,11 @@ def split_string_by_half(input_str: str) -> List[str]:
     return [input_str[:half_pos], input_str[half_pos:]]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     result = 0
     tmp = list()
     with open("input", "r") as f:
-        while line:= f.readline().strip():
+        while line := f.readline().strip():
             tmp.append(line)
             if len(tmp) == 3:
                 common = common_element(tmp[0], tmp[1], tmp[2])

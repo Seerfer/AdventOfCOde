@@ -14,7 +14,7 @@ with open("input", "r") as f:
 
 def topn_total(list_: List[int], n: int) -> int:
     sorted_list = sorted(list_)
-    sliced_list = sorted_list[-1*n:]
+    sliced_list = sorted_list[-1 * n :]
     print(sliced_list)
     return sum(sliced_list)
 
