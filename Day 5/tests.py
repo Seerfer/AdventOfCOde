@@ -17,11 +17,17 @@ class Test_stack(unittest.TestCase):
         out = q.return_queue
         self.assertEqual(out, expected)
 
-    def test_queue_pop(self):
+    def test_queue_pop_compare_queue(self):
         q = Queue([1,2,3,4,5])
         expected = [1,2,3,4]
         q.pop()
         out = q.return_queue
+        self.assertEqual(out, expected)
+
+    def test_queue_pop_compare_elements(self):
+        q = Queue([1,2,3,4,5])
+        expected = 5
+        out = q.pop()
         self.assertEqual(out, expected)
 
     def test_queue_top(self):
