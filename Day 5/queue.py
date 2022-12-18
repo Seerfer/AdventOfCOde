@@ -20,5 +20,7 @@ class Queue:
     def return_queue(self):
         return self.__queue
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Queue):
+            return NotImplemented
         return self.__queue == other.__queue
