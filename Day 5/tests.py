@@ -1,6 +1,7 @@
 import unittest
 
 from Queue import Queue
+from main import create_queues
 
 class Test_stack(unittest.TestCase):
 
@@ -48,6 +49,14 @@ class Test_stack(unittest.TestCase):
         out = q.is_empty()
         self.assertEqual(out, expected)
 
+
+class Test_functions(unittest.TestCase):
+
+    def test_create_queues(self):
+        elements = [[1,2,3], [1,2], [2,3,4]]
+        out = create_queues(elements)
+        expected = {n: Queue(el) for n, el in enumerate(elements, 1)}
+        self.assertEqual(out, expected)
 
 if __name__ == "__main__":
     unittest.main()
