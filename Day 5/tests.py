@@ -73,9 +73,9 @@ class Test_queues(unittest.TestCase):
 
     def test_read_values_from_string_template(self):
         string = "move 2 from 1 to 2"
-        template = r'move (?P<number>.*) from (?P<q1>.*) to (?P<q2>.*)'
+        template = 'move (?P<number>.*) from (?P<q1>.*) to (?P<q2>.*)'
         out = Queues.read_values_from_string_template(string, template)
-        expected = {"number": 2, "q1": 1, "q2":2}
+        expected = {"number": "2", "q1": "1", "q2":"2"}
         self.assertEqual(out,expected)
 
 

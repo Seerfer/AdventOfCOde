@@ -12,7 +12,9 @@ class Queues:
 
     @staticmethod
     def read_values_from_string_template(string:str, template:str) -> dict:
-        pass
+        m = re.match(rf'{template}', string)
+        return m.groupdict()
+
     @property
     def return_queues(self):
         return self.__queues
