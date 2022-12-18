@@ -90,14 +90,26 @@ class Test_queues(unittest.TestCase):
         expected = {n: Queue(el).return_queue for n, el in enumerate(elements, 1)}
         self.assertEqual(out, expected)
 
-    def test_execute_move_instruction(self):
+    def test_execute_move_instruction_non_multiple_el(self):
         instruction = "move 2 from 1 to 2"
         queues_elements = [["A", "B", "C"], ["Z"]]
         queues = Queues(queues_elements)
-        queues.execute_move_instruction(instruction)
+        queues.execute_move_instruction(instruction, False)
         expected = {
             1: Queue(["A"]).return_queue,
             2: Queue(["Z", "C", "B"]).return_queue,
+        }
+        out = queues.return_queues
+        self.assertEqual(expected, out)
+
+    def test_execute_move_instruction_multiple_el(self):
+        instruction = "move 2 from 1 to 2"
+        queues_elements = [["A", "B", "C"], ["Z"]]
+        queues = Queues(queues_elements)
+        queues.execute_move_instruction(instruction, False)
+        expected = {
+            1: Queue(["A"]).return_queue,
+            2: Queue(["Z", "B", "C"]).return_queue,
         }
         out = queues.return_queues
         self.assertEqual(expected, out)
