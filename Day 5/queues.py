@@ -17,7 +17,7 @@ class Queues:
 
     @staticmethod
     def read_values_from_string_template(string: str, template: str) -> dict:
-        m = re.match(rf"{template}", string)
+        m = re.match(template, string)
         return m.groupdict()
 
     @property
