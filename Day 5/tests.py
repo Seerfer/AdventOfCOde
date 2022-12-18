@@ -62,7 +62,25 @@ class Test_queue(unittest.TestCase):
         out = q.is_empty()
         self.assertEqual(out, expected)
 
+    def test_push_multiple(self):
+        q = Queue([1, 2, 3])
+        expected = [1, 2, 3, 4, 5]
+        q.push_multiple_el([4,5])
+        out = q.return_queue
+        self.assertEqual(out, expected)
 
+    def test_pop_multiple_compare_queues(self):
+        q = Queue([1, 2, 3, 4, 5])
+        expected = [1, 2, 3]
+        q.pop_multiple_elements(2)
+        out = q.return_queue
+        self.assertEqual(out, expected)
+
+    def test_pop_multiple_compare_return(self):
+        q = Queue([1, 2, 3, 4, 5])
+        expected = [4, 5]
+        out = q.pop_multiple_elements(2)
+        self.assertEqual(out, expected)
 
 
 class Test_queues(unittest.TestCase):
@@ -72,11 +90,11 @@ class Test_queues(unittest.TestCase):
         expected = {n: Queue(el).return_queue for n, el in enumerate(elements, 1)}
         self.assertEqual(out, expected)
 
-    def test_execute_instruction(self):
+    def test_execute_move_instruction(self):
         instruction = "move 2 from 1 to 2"
         queues_elements = [["A", "B", "C"], ["Z"]]
         queues = Queues(queues_elements)
-        queues.execute_instruction(instruction)
+        queues.execute_move_instruction(instruction)
         expected = {
             1: Queue(["A"]).return_queue,
             2: Queue(["Z", "C", "B"]).return_queue,
