@@ -4,7 +4,7 @@ from queue import Queue
 from queues import Queues
 
 
-class Test_stack(unittest.TestCase):
+class Test_queue(unittest.TestCase):
 
     def test_queue_return(self):
         el = [1, 2, 3, 4, 5]
@@ -59,6 +59,17 @@ class Test_queues(unittest.TestCase):
         expected = {n: Queue(el) for n, el in enumerate(elements, 1)}
         self.assertEqual(out, expected)
 
+    def test_execute_instruction(self):
+        instruction = "move 2 from 1 to 2"
+        queues_elements = [["A", "B", "C"], ["Z"]]
+        queues = Queues(queues_elements)
+        queues.execute_instruction(instruction)
+        expected = {
+            1: Queue(["A"]),
+            2: Queue(["Z", "B", "C"])
+        }
+        out = queues.return_queues
+        self.assertEqual(expected, out)
 
 
 if __name__ == "__main__":
