@@ -106,7 +106,7 @@ class Test_queues(unittest.TestCase):
         instruction = "move 2 from 1 to 2"
         queues_elements = [["A", "B", "C"], ["Z"]]
         queues = Queues(queues_elements)
-        queues.execute_move_instruction(instruction, False)
+        queues.execute_move_instruction(instruction, True)
         expected = {
             1: Queue(["A"]).return_queue,
             2: Queue(["Z", "B", "C"]).return_queue,

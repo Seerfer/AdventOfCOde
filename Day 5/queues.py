@@ -12,7 +12,8 @@ class Queues:
         template = "move (?P<number>.*) from (?P<q1>.*) to (?P<q2>.*)"
         parsed = self.read_values_from_string_template(instruction, template)
         if multiple_el:
-            pass
+            popped = self.__queues[int(parsed.get("q1"))].pop_multiple_elements(int(parsed.get("number")))
+            self.__queues[int(parsed.get("q2"))].push_multiple_el(popped)
         else:
             for _ in range(int(parsed["number"])):
                 el = self.__queues[int(parsed.get("q1"))].pop()
