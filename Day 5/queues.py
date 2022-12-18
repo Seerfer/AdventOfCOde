@@ -1,3 +1,4 @@
+import re
 from typing import List
 
 from queue import Queue
@@ -9,6 +10,9 @@ class Queues:
     def execute_instruction(self, instruction: str) -> None:
         pass
 
+    @staticmethod
+    def read_values_from_string_template(string:str, template:str) -> dict:
+        pass
     @property
     def return_queues(self):
         return self.__queues
