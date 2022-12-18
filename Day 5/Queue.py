@@ -19,3 +19,6 @@ class Queue:
     @property
     def return_queue(self):
         return self.__queue
+
+    def __eq__(self, other):
+        return self.__queue == other.__queue
