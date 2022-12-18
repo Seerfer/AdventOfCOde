@@ -18,13 +18,26 @@ class Test_queue(unittest.TestCase):
         out = q.return_queue
         self.assertEqual(out, expected)
 
-    def test_queue_pop_compare_queue(self):
+    def test_queue_push_none_el(self):
+        q = Queue([1, 2, 3, 4, 5])
+        expected = [1, 2, 3, 4, 5]
+        q.push(None)
+        out = q.return_queue
+        self.assertEqual(out, expected)
+
+    def test_queue_pop(self):
         q = Queue([1, 2, 3, 4, 5])
         expected = [1, 2, 3, 4]
         q.pop()
         out = q.return_queue
         self.assertEqual(out, expected)
 
+    def test_queue_pop_empty_list(self):
+        q = Queue([])
+        expected = []
+        q.pop()
+        out = q.return_queue
+        self.assertEqual(out, expected)
     def test_queue_pop_compare_elements(self):
         q = Queue([1, 2, 3, 4, 5])
         expected = 5
@@ -48,6 +61,8 @@ class Test_queue(unittest.TestCase):
         expected = True
         out = q.is_empty()
         self.assertEqual(out, expected)
+
+
 
 
 class Test_queues(unittest.TestCase):
