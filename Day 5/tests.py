@@ -5,7 +5,6 @@ from queues import Queues
 
 
 class Test_queue(unittest.TestCase):
-
     def test_queue_return(self):
         el = [1, 2, 3, 4, 5]
         q = Queue(el)
@@ -52,11 +51,10 @@ class Test_queue(unittest.TestCase):
 
 
 class Test_queues(unittest.TestCase):
-
     def test_create_queues(self):
         elements = [[1, 2, 3], [1, 2], [2, 3, 4]]
         out = Queues(elements).return_queues
-        expected = {n: Queue(el) for n, el in enumerate(elements, 1)}
+        expected = {n: Queue(el).return_queue for n, el in enumerate(elements, 1)}
         self.assertEqual(out, expected)
 
     def test_execute_instruction(self):
@@ -65,18 +63,18 @@ class Test_queues(unittest.TestCase):
         queues = Queues(queues_elements)
         queues.execute_instruction(instruction)
         expected = {
-            1: Queue(["A"]),
-            2: Queue(["Z", "B", "C"])
+            1: Queue(["A"]).return_queue,
+            2: Queue(["Z", "C", "B"]).return_queue,
         }
         out = queues.return_queues
         self.assertEqual(expected, out)
 
     def test_read_values_from_string_template(self):
         string = "move 2 from 1 to 2"
-        template = 'move (?P<number>.*) from (?P<q1>.*) to (?P<q2>.*)'
+        template = "move (?P<number>.*) from (?P<q1>.*) to (?P<q2>.*)"
         out = Queues.read_values_from_string_template(string, template)
-        expected = {"number": "2", "q1": "1", "q2":"2"}
-        self.assertEqual(out,expected)
+        expected = {"number": "2", "q1": "1", "q2": "2"}
+        self.assertEqual(out, expected)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,4 @@
-
 class Queue:
-
     def __init__(self, starting_elements: list = []):
         self.__queue = starting_elements
 
