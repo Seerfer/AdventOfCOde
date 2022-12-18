@@ -1,6 +1,8 @@
 from typing import List
 from queues import Queues
-def read_queues(filename: str) ->Queues:
+
+
+def read_queues(filename: str) -> Queues:
     q = []
     with open(filename, "r") as f:
         while line := f.readline().strip():
@@ -16,6 +18,7 @@ def read_file_lines(filename: str) -> List[str]:
         while line := f.readline().strip():
             ins.append(line)
     return ins
+
 
 if __name__ == "__main__":
     q = read_queues("queues.txt")
