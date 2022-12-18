@@ -21,5 +21,5 @@ if __name__ == "__main__":
     q = read_queues("queues.txt")
     instructions = read_file_lines("instructions.txt")
     for i in instructions:
-        q.execute_instruction(i)
+        q.execute_move_instruction(i, True)
     print("".join([el[-1] for el in q.return_queues.values()]))
