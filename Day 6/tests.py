@@ -42,5 +42,25 @@ class Test_take_next_n_el(unittest.TestCase):
             out = take_next_n_el(input_data, starting, n)
 
 
+class Test_list_count_distinct(unittest.TestCase):
+    def test_list_count_distinct_no_duplicates(self):
+        input_data = [1, 2, 3, 4, 5]
+        expected = 5
+        out = list_count_distinct(input_data)
+        self.assertEqual(expected, out)
+
+    def test_list_count_distinct_with_duplicates(self):
+        input_data = [1, 2, 3, 4, 5, 5, 4]
+        expected = 5
+        out = list_count_distinct(input_data)
+        self.assertEqual(expected, out)
+
+    def test_list_count_distinct_empty_list(self):
+        input_data = []
+        expected = 0
+        out = list_count_distinct(input_data)
+        self.assertEqual(expected, out)
+
+
 if __name__ == "__main__":
     unittest.main()
