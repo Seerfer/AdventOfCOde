@@ -15,4 +15,11 @@ def list_count_distinct(collection: list) -> int:
 if __name__ == "__main__":
     result = 0
     with open("input", "r") as f:
-        input_data = f.readline()
+        input_data = list(f.readline())
+
+
+    for count, value in enumerate(input_data):
+        n4 = take_next_n_el(input_data, count, 4)
+        if list_count_distinct(n4) == 4:
+            print(count + 4 + 1) #add 1 because we need position that not count from 0
+            break
