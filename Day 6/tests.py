@@ -12,6 +12,14 @@ class Test_take_next_n_el(unittest.TestCase):
         out = take_next_n_el(input_data, starting, n)
         self.assertEqual(expected, out)
 
+    def test_take_next_n_el_start_n_is_0(self):
+        input_data = [1, 2, 3, 4, 5, 6]
+        starting = 0
+        n = 0
+        expected = []
+        out = take_next_n_el(input_data, starting, n)
+        self.assertEqual(expected, out)
+
     def test_take_next_n_el_start_middle(self):
         input_data = [1, 2, 3, 4, 5, 6]
         starting = 2
