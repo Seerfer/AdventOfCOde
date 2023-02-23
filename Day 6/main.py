@@ -3,7 +3,7 @@ def take_next_n_el(collection: list, starting_index: int, n: int) -> list:
 
 
 def list_count_distinct(collection: list) -> int:
-    pass
+    return len(set(collection))
 
 
 if __name__ == "__main__":
