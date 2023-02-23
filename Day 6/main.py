@@ -17,9 +17,9 @@ if __name__ == "__main__":
     with open("input", "r") as f:
         input_data = list(f.readline())
 
-
+    n = 14
     for count, value in enumerate(input_data):
-        n4 = take_next_n_el(input_data, count, 4)
-        if list_count_distinct(n4) == 4:
-            print(count + 4 + 1) #add 1 because we need position that not count from 0
+        n4 = take_next_n_el(input_data, count, n)
+        if list_count_distinct(n4) == n:
+            print(count + n + 1)  # add 1 because we need position that not count from 0
             break
