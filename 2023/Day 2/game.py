@@ -2,27 +2,35 @@ from typing import Optional
 from math import inf
 
 class Round:
-    def __init__(self):
-        self.cubes = {el:0 for el in ["red", "blue", "green"]}
-
-    def add_cubes(self, colour: str, amount: int):
-        if colour in (self.cubes.keys()):
-            self.cubes[colour] += amount
-        else:
-            raise ValueError("Incorrect colour given ")
+    def __init__(self, cubes_dict, bag: Optional[dict] = None):
+        self.cubes = {}
+        self._bag = bag
+        colours = ["red", "blue", "green"]
+        for c in colours:
+            self.cubes[c] = cubes_dict.get(c, 0)
 
 
     def return_cubes_amount(self, colour: str) -> int:
         return self.cubes.get(colour, 0)
 
 
-    def validate_round(self, max_values: dict):
-        return all([self.return_cubes_amount(k)<=v for k,v in max_values.items()])
+    def validate_round(self):
+        if self._bag:
+            return all([self.return_cubes_amount(k)<=v for k,v in self._bag.items()])
+        return True
+
+
+    @property
+    def bag(self):
+        return self._bag
+
+    @bag.setter
+    def bag(self, value):
+        self._bag=value
 
 
     def __str__(self):
         return str(self.cubes)
-
 
     def __repr__(self):
         return str(self)
@@ -32,19 +40,31 @@ class Game:
     def __init__(self, id: int, bag: Optional[dict] = None):
         self.id = id
         self.rounds = []
-        self.bag = bag
+        self._bag = bag
         if bag is None:
-            self.bag = {el: inf for el in ["red", "blue", "green"]}
+            self._bag = {el: inf for el in ["red", "blue", "green"]}
 
 
-    def add_round(self, round: Round):
-        self.rounds.append(round)
+    def add_round(self, round_dict: dict):
+        self.rounds.append(Round(round_dict, self._bag))
 
 
     def validate_game(self):
-        if self.bag is None:
+        if self._bag is None:
             return None
-        return all([r.validate_round(self.bag) for r in self.rounds])
+        return all([r.validate_round() for r in self.rounds])
+
+
+    @property
+    def bag(self):
+        return self._bag
+
+    @bag.setter
+    def bag(self, value):
+        self._bag=value
+        for r in self.rounds:
+            r.bag = value
+
 
 
     def __str__(self):
