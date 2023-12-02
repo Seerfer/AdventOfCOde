@@ -1,4 +1,5 @@
 from typing import Optional
+from math import inf
 
 class Round:
     def __init__(self):
@@ -32,6 +33,9 @@ class Game:
         self.id = id
         self.rounds = []
         self.bag = bag
+        if bag is None:
+            self.bag = {el: inf for el in ["red", "blue", "green"]}
+
 
     def add_round(self, round: Round):
         self.rounds.append(round)
