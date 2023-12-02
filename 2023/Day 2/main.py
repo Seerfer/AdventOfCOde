@@ -2,6 +2,7 @@ from typing import List
 
 from game import Game, Round
 
+
 def create_cubes_dict(s: str) -> dict:
     result = {}
     for c in s.split(","):
@@ -34,7 +35,9 @@ if __name__ == "__main__":
 
     num = 0
     for g in games:
-        num += g.highest_cube_score("red") * g.highest_cube_score("blue") * g.highest_cube_score("green")
+        num += (
+            g.highest_cube_score("red")
+            * g.highest_cube_score("blue")
+            * g.highest_cube_score("green")
+        )
     print(num)
-
-

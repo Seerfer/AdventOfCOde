@@ -1,11 +1,15 @@
 import unittest
 
 from game import Game, Round
-from main import create_cubes_dict, read_game_id_from_str, read_rounds_from_str, split_rounds_str
+from main import (
+    create_cubes_dict,
+    read_game_id_from_str,
+    read_rounds_from_str,
+    split_rounds_str,
+)
 
 
 class Test_round_validate(unittest.TestCase):
-
     def setUp(self):
         self.round = Round({"green": 20, "red": 40})
 
@@ -15,20 +19,17 @@ class Test_round_validate(unittest.TestCase):
         expected = True
         self.assertEqual(expected, valid)
 
-
     def test_round_validate_one_negative(self):
         self.round.bag = {"green": 10, "red": 100}
         valid = self.round.validate_round()
         expected = False
         self.assertEqual(expected, valid)
 
-
     def test_round_validate_both_negative(self):
         self.round.bag = {"green": 20, "red": 40}
         valid = self.round.validate_round()
         expected = True
         self.assertEqual(expected, valid)
-
 
     def test_round_validate_postive_equal(self):
         self.round.bag = {"green": 10, "red": 10}
@@ -38,18 +39,16 @@ class Test_round_validate(unittest.TestCase):
 
 
 class Test_game_validate(unittest.TestCase):
-
     def setUp(self):
         self.game = Game(1)
         self.game.add_round({"green": 20, "red": 40})
         self.game.add_round({"green": 2, "red": 4})
 
     def test_game_validate_positive(self):
-        self.game.bag={"green": 100, "red": 100}
+        self.game.bag = {"green": 100, "red": 100}
         valid = self.game.validate_game()
         expected = True
         self.assertEqual(expected, valid)
-
 
     def test_game_validate_one_negative(self):
         self.game.bag = {"green": 10, "red": 10}
@@ -57,12 +56,12 @@ class Test_game_validate(unittest.TestCase):
         expected = False
         self.assertEqual(expected, valid)
 
-
     def test_game_validate_both_negative(self):
         self.game.bag = {"green": 1, "red": 1}
         valid = self.game.validate_game()
         expected = False
         self.assertEqual(expected, valid)
+
 
 class Test_create_cubes_dict(unittest.TestCase):
     def test_create_cubes_dict(self):
@@ -103,6 +102,7 @@ class Test_highest_cube_score(unittest.TestCase):
         game.add_round({"blue": 1, "red": 20})
         game.add_round({"blue": 4, "red": 8})
         self.game = game
+
     def test_highest_cube_score(self):
         input_expected = [("blue", 4), ("red", 20)]
         for input, expected in input_expected:
@@ -110,7 +110,6 @@ class Test_highest_cube_score(unittest.TestCase):
 
     def test_highest_cube_score_zero_score(self):
         self.assertEqual(0, self.game.highest_cube_score("green"))
-
 
 
 if __name__ == "__main__":
