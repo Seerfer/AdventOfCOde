@@ -1,7 +1,11 @@
 import unittest
 
-from main import create_number_from_digits, find_first_value, find_last_value, transform_to_digit
-
+from main import (
+    create_number_from_digits,
+    find_first_value,
+    find_last_value,
+    transform_to_digit,
+)
 
 
 class Test_create_number_from_digits(unittest.TestCase):
@@ -24,9 +28,7 @@ class Test_create_number_from_digits(unittest.TestCase):
             create_number_from_digits("13", "2", "e", "3")
 
 
-
 class Test_find_first_value(unittest.TestCase):
-
     def test_find_first_value_no_apperance(self):
         input = "sadjsksd"
         values = ["eight", "two", "seven"]
@@ -49,9 +51,7 @@ class Test_find_first_value(unittest.TestCase):
         self.assertEqual(expected, out)
 
 
-
 class Test_find_last_value(unittest.TestCase):
-
     def test_find_last_value_no_apperance(self):
         input = "sadjsksd"
         values = ["eight", "two", "seven"]
@@ -73,8 +73,8 @@ class Test_find_last_value(unittest.TestCase):
         out = find_last_value(input, values)
         self.assertEqual(expected, out)
 
-class Test_transform_to_digit(unittest.TestCase):
 
+class Test_transform_to_digit(unittest.TestCase):
     def test_transform_to_digit(self):
         input = "one"
         expected = "1"
