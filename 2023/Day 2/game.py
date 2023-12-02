@@ -2,13 +2,13 @@ from typing import Optional
 
 class Round:
     def __init__(self):
-        self.cubes = {}
+        self.cubes = {el:0 for el in ["red", "blue", "green"]}
 
     def add_cubes(self, colour: str, amount: int):
         if colour in (self.cubes.keys()):
             self.cubes[colour] += amount
         else:
-            self.cubes[colour] = amount
+            raise ValueError("Incorrect colour given ")
 
 
     def return_cubes_amount(self, colour: str) -> int:
