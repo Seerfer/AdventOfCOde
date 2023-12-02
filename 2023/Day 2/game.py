@@ -49,9 +49,18 @@ class Game:
         self.rounds.append(Round(round_dict, self._bag))
 
 
+    def highest_cube_score(self, colour):
+        high = 0
+        for r in self.rounds:
+            k = r.return_cubes_amount(colour)
+            if k > high:
+                high = k
+        return high
+
+
     def validate_game(self):
         if self._bag is None:
-            return None
+            return True
         return all([r.validate_round() for r in self.rounds])
 
 

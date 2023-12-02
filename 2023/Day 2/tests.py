@@ -97,6 +97,21 @@ class Test_split_rounds_str(unittest.TestCase):
         self.assertEqual(expected, split_rounds_str(s))
 
 
+class Test_highest_cube_score(unittest.TestCase):
+    def setUp(self):
+        game = Game(1)
+        game.add_round({"blue": 1, "red": 20})
+        game.add_round({"blue": 4, "red": 8})
+        self.game = game
+    def test_highest_cube_score(self):
+        input_expected = [("blue", 4), ("red", 20)]
+        for input, expected in input_expected:
+            self.assertEqual(expected, self.game.highest_cube_score(input))
+
+    def test_highest_cube_score_zero_score(self):
+        self.assertEqual(0, self.game.highest_cube_score("green"))
+
+
 
 if __name__ == "__main__":
     unittest.main()

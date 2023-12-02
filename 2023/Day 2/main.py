@@ -23,15 +23,18 @@ def split_rounds_str(s: str) -> List[str]:
 
 
 if __name__ == "__main__":
-    valid_dict = {"red": 12, "green": 13, "blue": 14}
     games = []
     with open("input", "r") as f:
         while line := f.readline().strip():
-            g = Game(read_game_id_from_str(line), valid_dict)
+            g = Game(read_game_id_from_str(line))
             for round_s in split_rounds_str(read_rounds_from_str(line)):
                 c = create_cubes_dict(round_s)
                 g.add_round(c)
             games.append(g)
-    print(sum([g.id for g in games if g.validate_game()]))
+
+    num = 0
+    for g in games:
+        num += g.highest_cube_score("red") * g.highest_cube_score("blue") * g.highest_cube_score("green")
+    print(num)
 
 
