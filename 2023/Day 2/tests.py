@@ -66,19 +66,22 @@ class Test_game_validate(unittest.TestCase):
         self.game.add_round(round2)
 
     def test_game_validate_positive(self):
-        valid = self.game.validate_game({"green": 100, "red": 100})
+        self.game.bag={"green": 100, "red": 100}
+        valid = self.game.validate_game()
         expected = True
         self.assertEqual(expected, valid)
 
 
     def test_game_validate_one_negative(self):
-        valid = self.game.validate_game({"green": 10, "red": 10})
+        self.game.bag = {"green": 10, "red": 10}
+        valid = self.game.validate_game()
         expected = False
         self.assertEqual(expected, valid)
 
 
     def test_game_validate_both_negative(self):
-        valid = self.game.validate_game({"green": 1, "red": 1})
+        self.game.bag = {"green": 1, "red": 1}
+        valid = self.game.validate_game()
         expected = False
         self.assertEqual(expected, valid)
 

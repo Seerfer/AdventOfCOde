@@ -27,13 +27,13 @@ if __name__ == "__main__":
     games = []
     with open("input", "r") as f:
         while line := f.readline().strip():
-            g = Game(read_game_id_from_str(line))
+            g = Game(read_game_id_from_str(line), valid_dict)
             for round_s in split_rounds_str(read_rounds_from_str(line)):
                 r = Round()
                 for c in create_cubes_list(round_s):
                     r.add_cubes(c["colour"], c["amount"])
                 g.add_round(r)
             games.append(g)
-    print(sum([g.id for g in games if g.validate_game(valid_dict)]))
+    print(sum([g.id for g in games if g.validate_game()]))
 
 

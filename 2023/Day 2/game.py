@@ -1,3 +1,5 @@
+from typing import Optional
+
 class Round:
     def __init__(self):
         self.cubes = {}
@@ -26,16 +28,19 @@ class Round:
 
 
 class Game:
-    def __init__(self, id: int):
+    def __init__(self, id: int, bag: Optional[dict] = None):
         self.id = id
         self.rounds = []
+        self.bag = bag
 
     def add_round(self, round: Round):
         self.rounds.append(round)
 
 
-    def validate_game(self, max_values: dict):
-        return all([r.validate_round(max_values) for r in self.rounds])
+    def validate_game(self):
+        if self.bag is None:
+            return None
+        return all([r.validate_round(self.bag) for r in self.rounds])
 
 
     def __str__(self):
