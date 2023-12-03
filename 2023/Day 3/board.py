@@ -34,7 +34,9 @@ class Field:
 
 class FieldGroup:
     def __init__(self, *args: Field):
-        self.fields = [a for a in args]
+        self._fields = [a for a in args]
+        if self._validate_fields() is False:
+            raise ValueError("Validation of fields did not pass")
 
 
     def _validate_fields(self):
@@ -50,6 +52,11 @@ class FieldGroup:
     def _validate_y_cords(y_cords: List[int]) -> bool:
         return len(set(y_cords)) == 1
 
+
+    @property
+    def fields(self):
+        return self._fields
+
     @property
     def cords(self):
         return [(f.x, f.x) for f in self.fields]
@@ -63,14 +70,7 @@ class FieldGroup:
 class FieldGroupNum(FieldGroup):
     def __init__(self, *args: Field):
         super().__init__(*args)
-        # x_cords = [a.x for a in self.fields]
-        # y_cords = [a.y for a in self.fields]
-        # print(x_cords)
-        # if (self.validate_x_cords(x_cords) and self.validate_y_cords(y_cords)) is False:
-        #     raise ValueError("Coordinates are incorrect")
-        # sorted_by_x = sorted(fields, key=lambda f: f.a)
-        # values = [f.value for f in sorted_by_x]
-        # self.num = int("".join(values))
+        self.num = self.create_num()
 
 
 
