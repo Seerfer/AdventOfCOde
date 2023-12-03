@@ -70,7 +70,7 @@ class FieldGroup:
 class FieldGroupNum(FieldGroup):
     def __init__(self, *args: Field):
         super().__init__(*args)
-        self.num = self.create_num()
+        self._num = self.create_num()
 
 
 
@@ -85,6 +85,11 @@ class FieldGroupNum(FieldGroup):
     @staticmethod
     def _validate_values(values: List[str]) -> bool:
         return all([v.isdigit() for v in values])
+
+
+    @property
+    def num(self):
+        return self._num
 
 
 
