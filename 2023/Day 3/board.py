@@ -132,5 +132,9 @@ class Board:
         return self.get_list_of_values(valid_borders)
 
 
+    def get_group_borders(self, group: FieldGroup):
+        return list({self.get_field_borders(f.x, f.y) for f in group.fields})
+
+
     def get_group_border(self, group: FieldGroup):
         return {self.get_field_borders(cord[0], cord[1]) for cord in FieldGroup.cords}
