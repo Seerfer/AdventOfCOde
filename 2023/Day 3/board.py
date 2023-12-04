@@ -32,6 +32,11 @@ class Field:
         return self._value.isdigit()
 
 
+    def __str__(self):
+        return self.value
+
+
+
 class FieldGroup:
     def __init__(self, *args: Field):
         self._fields = [a for a in args]
@@ -138,3 +143,9 @@ class Board:
 
     def get_group_border(self, group: FieldGroup):
         return {self.get_field_borders(cord[0], cord[1]) for cord in FieldGroup.cords}
+
+
+    def print_board(self):
+        list_of_values = [[self.get_board_el(i,j) for j in range(self.y_size)] for i in range(self.x_size)]
+        for line in list_of_values:
+            print("".join(line))
