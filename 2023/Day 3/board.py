@@ -102,6 +102,7 @@ class FieldGroupNum(FieldGroup):
 class Board:
     def __init__(self, x_size, y_size):
         self.fields = [[Field(i, j) for j in range(y_size)] for i in range(x_size)]
+        self.groups = []
 
     def get_board_el(self, x: int, y: int) -> str:
         if self.validate_coordinates(x,y):
@@ -137,15 +138,15 @@ class Board:
         return self.get_list_of_values(valid_borders)
 
 
-    def get_group_borders(self, group: FieldGroup):
+    def get_group_borders(self, group: FieldGroup) -> list:
         return list({self.get_field_borders(f.x, f.y) for f in group.fields})
 
 
-    def get_group_border(self, group: FieldGroup):
-        return {self.get_field_borders(cord[0], cord[1]) for cord in FieldGroup.cords}
-
-
-    def print_board(self):
+    def print_board(self) -> None:
         list_of_values = [[self.get_board_el(i,j) for j in range(self.y_size)] for i in range(self.x_size)]
         for line in list_of_values:
             print("".join(line))
+
+
+    def add_group_num(self, group: FieldGroupNum) -> None:
+        self.groups.append(group)
