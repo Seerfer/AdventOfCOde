@@ -148,5 +148,9 @@ class Board:
             print("".join(line))
 
 
-    def add_group_num(self, group: FieldGroupNum) -> None:
+    def add_group_num(self, cords: tuple) -> None:
+        fields = []
+        for x, y in cords:
+            fields.append(self.fields[x][y])
+        group = FieldGroupNum(*fields)
         self.groups.append(group)
