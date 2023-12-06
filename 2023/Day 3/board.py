@@ -148,7 +148,7 @@ class Board:
 
 
     def print_board(self) -> None:
-        list_of_values = [[self.get_board_el(i,j) for j in range(self.y_size)] for i in range(self.x_size)]
+        list_of_values = [[self.get_board_el(i,j) for j in range(self.x_size)] for i in range(self.y_size)]
         for line in list_of_values:
             print("".join(line))
 
