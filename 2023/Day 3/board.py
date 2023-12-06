@@ -101,7 +101,7 @@ class FieldGroupNum(FieldGroup):
 
 class Board:
     def __init__(self, x_size, y_size):
-        self.fields = [[Field(i, j) for j in range(y_size)] for i in range(x_size)]
+        self.fields = [[Field(j, i) for j in range(y_size)] for i in range(x_size)]
         self.groups = []
 
     def get_board_el(self, x: int, y: int) -> str:
@@ -127,19 +127,24 @@ class Board:
         return [self.get_board_el(x, y) for x,y in values]
 
     @staticmethod
-    def _calculate_possible_borders(x:int, y:int) -> Set[Tuple[int, int]]:
-        return {(x-1,y+1), (x,y+1), (x+1,y+1),
+    def _calculate_possible_borders(x:int, y:int) -> List[Tuple[int, int]]:
+        return list({(x-1,y+1), (x,y+1), (x+1,y+1),
                 (x-1, y),           (x+1,y),
-                (x-1,y-1),(x,y-1),(x+1,y-1)}
+                (x-1,y-1),(x,y-1),(x+1,y-1)})
 
     def get_field_borders(self, x, y) -> List[str]:
         possible_borders_coordinates = self._calculate_possible_borders(x,y)
         valid_borders = [(x,y) for x,y in possible_borders_coordinates if self.validate_coordinates(x,y)]
-        return self.get_list_of_values(valid_borders)
+        return valid_borders
 
 
     def get_group_borders(self, group: FieldGroup) -> list:
-        return list({self.get_field_borders(f.x, f.y) for f in group.fields})
+        borders_list = [self.get_field_borders(f.x, f.y) for f in group.fields]
+        unpacked = []
+        for l in borders_list:
+            for el in l:
+                unpacked.append(el)
+        return list(set(unpacked))
 
 
     def print_board(self) -> None:
