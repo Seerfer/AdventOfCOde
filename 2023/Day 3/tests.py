@@ -103,10 +103,10 @@ class Test_Board_calculate_borders(unittest.TestCase):
     def test_Board_calculate_possible_borders(self):
         input_x = 10
         input_y = 10
-        expected = {(9,11), (10,11), (11,11),
+        expected = [(9,11), (10,11), (11,11),
                     (9,10),         (11,10),
-                    (9,9), (10,9), (11,9)}
-        self.assertEqual(self.board._calculate_possible_borders(input_x, input_y), expected)
+                    (9,9), (10,9), (11,9)]
+        self.assertEqual(set(self.board._calculate_possible_borders(input_x, input_y)), set(expected))
 
 
 class Test_FieldGroupNum_validate_cords(unittest.TestCase):
