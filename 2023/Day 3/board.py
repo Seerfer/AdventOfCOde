@@ -149,6 +149,7 @@ class Board:
 
     def print_board(self) -> None:
         list_of_values = [[self.get_board_el(i,j) for j in range(self.x_size)] for i in range(self.y_size)]
+        print(list_of_values)
         for line in list_of_values:
             print("".join(line))
 
@@ -156,6 +157,6 @@ class Board:
     def add_group_num(self, cords: tuple) -> None:
         fields = []
         for x, y in cords:
-            fields.append(self.fields[x][y])
+            fields.append(self.fields[y][x])
         group = FieldGroupNum(*fields)
         self.groups.append(group)
