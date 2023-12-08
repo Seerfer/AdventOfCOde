@@ -11,9 +11,16 @@ with open("input", "r") as f:
         card = Card(card_nums_transformed, winning_nums_transformed, id)
         cards.append(card)
 
-    print(f"Result part 1: {sum([card.points for card in cards])}")
+print(f"Result part 1: {sum([card.points for card in cards])}")
 
 
-cards_deck_with_copies = []
-for c in cards:
-    print(c.common_nums_count)
+max_id = max([c.id for c in cards])
+cards_ids_with_copies = [c.id for c in cards]
+for id_to_process in range(1,max_id+1):
+    cards_num_to_process = cards_ids_with_copies.count(id_to_process)
+    cards_won = list(range(id_to_process + 1, 1 + id_to_process + cards[id_to_process-1].common_nums_count))
+    for c in range(cards_num_to_process):
+         cards_ids_with_copies += cards_won
+
+
+print(f"Result part 2: {len(cards_ids_with_copies)}")
