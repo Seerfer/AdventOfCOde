@@ -27,9 +27,9 @@ with open("input", "r") as f:
 
     result2 = 0
     for gear_cord in gears_cords:
-        neigh = board.find_neighbour_group(gear_cord[0], gear_cord[1])
+        neigh = board.find_neighbour_nums(gear_cord[0], gear_cord[1])
         if len(neigh) == 2:
-            result2 += neigh[0].num * neigh[1].num
+            result2 += neigh[0] * neigh[1]
     print(f"result part 2: {result2}")
 
 
