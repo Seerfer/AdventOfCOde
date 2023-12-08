@@ -160,3 +160,12 @@ class Board:
             fields.append(self.fields[y][x])
         group = FieldGroupNum(*fields)
         self.groups.append(group)
+
+    def find_neighbour_group(self, x, y):
+        res = []
+        for g in self.groups:
+            g_neigh = self.get_group_borders(g)
+            g_cords = g_neigh
+            if (x,y) in g_cords:
+                res.append(g)
+        return res
