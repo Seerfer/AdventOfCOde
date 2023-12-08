@@ -101,24 +101,24 @@ class FieldGroupNum(FieldGroup):
 
 class Board:
     def __init__(self, x_size, y_size):
-        self.fields = [[Field(j, i) for j in range(y_size)] for i in range(x_size)]
+        self.fields = [[Field(j, i) for j in range(x_size)] for i in range(y_size)]
         self.groups = []
 
     def get_board_el(self, x: int, y: int) -> str:
         if self.validate_coordinates(x,y):
-            return self.fields[x][y].value
+            return self.fields[y][x].value
         raise ValueError("Index out of range")
 
     def set_field_value(self, x: int, y: int, value: str) -> None:
-        self.fields[x][y].value = value
+        self.fields[y][x].value = value
 
     @property
     def x_size(self):
-        return len(self.fields)
+        return len(self.fields[0])
 
     @property
     def y_size(self):
-        return len(self.fields[0])
+        return len(self.fields)
 
     def validate_coordinates(self, x, y):
         return (x in range(0, self.x_size) and y in range(0, self.y_size))
