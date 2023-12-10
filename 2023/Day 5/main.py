@@ -8,6 +8,13 @@ def read_seeds(line: str) -> List[int]:
 def read_map_name(line):
     return line.replace("map:", "").strip()
 
+def split_list_to_chunks(array, chunk_size)->list:
+    chunks = []
+    for i in range(0, len(array), chunk_size):
+        chunks.append(array[i:i + chunk_size])
+    return chunks
+
+
 if __name__ == "__main__":
     mapps_dict_values = {}
     values = []
@@ -29,6 +36,8 @@ if __name__ == "__main__":
             mapps_dict_mappings[key] = Mapper(mapp_confs)
 
     locs = []
+    seeds1 = seeds
+    seeds2 = []
     for s in seeds:
         soil = mapps_dict_mappings['seed-to-soil'].map(s)
         fertilizer = mapps_dict_mappings['soil-to-fertilizer'].map(soil)

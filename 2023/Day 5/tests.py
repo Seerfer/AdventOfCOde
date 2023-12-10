@@ -1,7 +1,7 @@
 import unittest
 
 from mapper import Mapper, MappingConf
-from main import read_seeds, read_map_name
+from main import read_seeds, read_map_name, split_list_to_chunks
 
 class Test_Mapper_calculate_range_nums(unittest.TestCase):
     def test_Mapper_calculate_range_nums(self):
@@ -76,4 +76,18 @@ class Test_read_map_name(unittest.TestCase):
         l = "seed-to-soil map:"
         expected = "seed-to-soil"
         self.assertEqual(read_map_name(l), expected)
+
+
+class Test_split_list_to_chunks(unittest.TestCase):
+    def test_split_list_to_chunks_equal_chunks(self):
+        l = [1,2,3,4,5,6]
+        chunks_size = 2
+        expected = [[1,2],[3,4],[5,6]]
+        self.assertEqual(split_list_to_chunks(l, chunks_size), expected)
+
+    def test_split_list_to_chunks_not_equal_chunks(self):
+        l = [1,2,3,4,5]
+        chunks_size = 2
+        expected = [[1,2],[3,4],[5]]
+        self.assertEqual(split_list_to_chunks(l, chunks_size), expected)
 
