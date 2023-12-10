@@ -14,7 +14,7 @@ if __name__ == "__main__":
     name = None
     with open("input", "r") as f:
         file_splited = [l for l in f.read().split("\n\n") if l != '']
-        seeds = file_splited[0]
+        seeds = read_seeds(file_splited[0])
         for mapping in file_splited[1:]:
             splited_mapping = mapping.split("\n")
             name = read_map_name(splited_mapping[0])
@@ -37,5 +37,6 @@ if __name__ == "__main__":
         temperature = mapps_dict_mappings['light-to-temperature'].map(light)
         humidity = mapps_dict_mappings['temperature-to-humidity'].map(temperature)
         location = mapps_dict_mappings['humidity-to-location'].map(humidity)
-        location.append(locs)
-    print(min(locs))
+        locs.append(location)
+
+    print(f"Part 1 result = {min(locs)}")
