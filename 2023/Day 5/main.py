@@ -17,8 +17,6 @@ def split_list_to_chunks(array, chunk_size)->list:
 
 if __name__ == "__main__":
     mapps_dict_values = {}
-    values = []
-    name = None
     with open("input", "r") as f:
         file_splited = [l for l in f.read().split("\n\n") if l != '']
         seeds = read_seeds(file_splited[0])
@@ -35,17 +33,12 @@ if __name__ == "__main__":
             mapp_confs.append(MappingConf(*splited_values))
             mapps_dict_mappings[key] = Mapper(mapp_confs)
 
-    locs = []
+    locs1 = []
     seeds1 = seeds
-    seeds2 = []
     for s in seeds:
-        soil = mapps_dict_mappings['seed-to-soil'].map(s)
-        fertilizer = mapps_dict_mappings['soil-to-fertilizer'].map(soil)
-        water = mapps_dict_mappings['fertilizer-to-water'].map(fertilizer)
-        light = mapps_dict_mappings['water-to-light'].map(water)
-        temperature = mapps_dict_mappings['light-to-temperature'].map(light)
-        humidity = mapps_dict_mappings['temperature-to-humidity'].map(temperature)
-        location = mapps_dict_mappings['humidity-to-location'].map(humidity)
-        locs.append(location)
+        val = s
+        for k,mapping in mapps_dict_mappings.items():
+            val = mapping.map(val)
+        locs1.append(val)
 
-    print(f"Part 1 result = {min(locs)}")
+    print(f"Part 1 result = {min(locs1)}")
