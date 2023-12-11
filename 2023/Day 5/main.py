@@ -14,6 +14,18 @@ def split_list_to_chunks(array, chunk_size)->list:
         chunks.append(array[i:i + chunk_size])
     return chunks
 
+def is_overlapping(r1: range, r2: range) -> bool:
+    ranges = sorted([r1, r2], key=lambda x:x.start)
+    return (ranges[0].stop >= ranges[1].start)
+
+def group_overlapping_ranges(ranges: List[range]) -> List[range]:
+    result = []
+    current_start = -1
+    current_stop = -1
+    sorted_ranges = sorted(ranges, key=lambda x:x.start)
+    
+    return result
+
 
 if __name__ == "__main__":
     mapps_dict_values = {}
