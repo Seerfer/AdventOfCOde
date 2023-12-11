@@ -92,7 +92,6 @@ class Test_split_list_to_chunks(unittest.TestCase):
         self.assertEqual(split_list_to_chunks(l, chunks_size), expected)
 
 
-is_overlapping
 class Test_is_overlapping(unittest.TestCase):
     def test_is_overlapping_positive(self):
         input1 = range(1,6)
