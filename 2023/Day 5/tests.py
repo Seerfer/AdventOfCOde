@@ -1,7 +1,7 @@
 import unittest
 
 from mapper import Mapper, MappingConf
-from main import read_seeds, read_map_name, split_list_to_chunks
+from main import read_seeds, read_map_name, split_list_to_chunks, group_overlapping_ranges, is_overlapping
 
 class Test_Mapper_calculate_range_nums(unittest.TestCase):
     def test_Mapper_calculate_range_nums(self):
@@ -91,3 +91,38 @@ class Test_split_list_to_chunks(unittest.TestCase):
         expected = [[1,2],[3,4],[5]]
         self.assertEqual(split_list_to_chunks(l, chunks_size), expected)
 
+
+is_overlapping
+class Test_is_overlapping(unittest.TestCase):
+    def test_is_overlapping_positive(self):
+        input1 = range(1,6)
+        input2 = range(3,8)
+        expected = True
+        self.assertEqual(expected, is_overlapping(input1, input2))
+
+    def test_is_overlapping_negative(self):
+        input1 = range(1,6)
+        input2 = range(9,12)
+        expected = False
+        self.assertEqual(expected, is_overlapping(input1, input2))
+class Test_group_overlapping_ranges(unittest.TestCase):
+    def test_group_overlapping_ranges_non_overlapping(self):
+        input = [range(1,3), range(5,7), range(10,12)]
+        expected = input
+        self.assertEqual(expected, group_overlapping_ranges(input))
+
+
+    def test_group_overlapping_ranges_all_overlapping(self):
+        input = [range(1,8), range(5,7), range(7,13)]
+        expected = [range(1,13)]
+        self.assertEqual(expected, group_overlapping_ranges(input))
+
+    def test_group_overlapping_ranges_not_all_overlapping(self):
+        input = [range(1, 8), range(5, 7), range(7, 13), range(15,16)]
+        expected = [range(1, 13), range(15,16)]
+        self.assertEqual(expected, group_overlapping_ranges(input))
+
+    def test_group_overlapping_ranges_one_range(self):
+        input = [range(1, 8)]
+        expected = input
+        self.assertEqual(expected, group_overlapping_ranges(input))
