@@ -16,15 +16,21 @@ def split_list_to_chunks(array, chunk_size)->list:
 
 def is_overlapping(r1: range, r2: range) -> bool:
     ranges = sorted([r1, r2], key=lambda x:x.start)
-    return (ranges[0].stop >= ranges[1].start)
+    return ranges[0].stop >= ranges[1].start
 
 def group_overlapping_ranges(ranges: List[range]) -> List[range]:
     result = []
-    current_start = -1
-    current_stop = -1
     sorted_ranges = sorted(ranges, key=lambda x:x.start)
-    
-    return result
+    current_range = sorted_ranges.pop(0)
+    while len(sorted_ranges) > 0:
+        r = sorted_ranges.pop(0)
+        if is_overlapping(current_range, r):
+            current_range = range(min([current_range.start, r.start]), max([current_range.stop, r.stop]))
+        else:
+            result.append(current_range)
+            current_range = r
+    result.append(current_range)
+    return sorted(result, key=lambda x:x.start)
 
 
 if __name__ == "__main__":

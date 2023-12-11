@@ -104,6 +104,18 @@ class Test_is_overlapping(unittest.TestCase):
         expected = False
         self.assertEqual(expected, is_overlapping(input1, input2))
 
+    def test_is_overlapping_positive_one_in_another(self):
+        input1 = range(1, 8)
+        input2 = range(5, 7)
+        expected = True
+        self.assertEqual(expected, is_overlapping(input1, input2))
+
+    def test_is_overlapping_positive_one_common_element(self):
+        input1 = range(1, 12)
+        input2 = range(12, 18)
+        expected = True
+        self.assertEqual(expected, is_overlapping(input1, input2))
+
 
 class Test_group_overlapping_ranges(unittest.TestCase):
     def test_group_overlapping_ranges_non_overlapping(self):
