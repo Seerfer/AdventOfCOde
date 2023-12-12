@@ -1,6 +1,12 @@
 from typing import List
+import math
 
 from mapper import Mapper, MappingConf
+
+
+def is_val_in_ranges(val: int, ranges: List[range]) -> bool:
+    conds = [val in r for r in ranges]
+    return any(conds)
 
 def read_seeds(line: str) -> List[int]:
     return [int(el) for el in line.replace("seeds:", "").strip().split(" ")]
@@ -51,12 +57,30 @@ if __name__ == "__main__":
             mapp_confs.append(MappingConf(*splited_values))
             mapps_dict_mappings[key] = Mapper(mapp_confs)
 
-    locs1 = []
     seeds1 = seeds
-    for s in seeds:
+    min_val = math.inf
+    for s in seeds1:
         val = s
-        for k,mapping in mapps_dict_mappings.items():
+        for k, mapping in mapps_dict_mappings.items():
             val = mapping.map(val)
-        locs1.append(val)
+        if val < min_val:
+            min_val = val
+    print(f"Part 1 result = {min_val}")
 
-    print(f"Part 1 result = {min(locs1)}")
+    seeds2_chunks = split_list_to_chunks(seeds, 2)
+    seeds2_not_grouped = []
+    for s in seeds2_chunks:
+        seeds2_not_grouped.append(range(s[0], s[0] + s[1]))
+    seeds2 = group_overlapping_ranges(seeds2_not_grouped)
+    min_val = math.inf
+    possible_locs = mapps_dict_mappings['humidity-to-location'].mapping_list_desc
+    for lr in possible_locs:
+        for l in lr:
+            val = l
+            for k,mapping in reversed(mapps_dict_mappings.items()):
+                val = mapping.map(val)
+            if l < min_val and is_val_in_ranges(val, seeds2):
+                min_val = l
+    print(f"Part 2 result = {min_val}")
+
+

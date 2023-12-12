@@ -1,7 +1,7 @@
 import unittest
 
 from mapper import Mapper, MappingConf
-from main import read_seeds, read_map_name, split_list_to_chunks, group_overlapping_ranges, is_overlapping
+from main import read_seeds, read_map_name, split_list_to_chunks, group_overlapping_ranges, is_overlapping, is_val_in_ranges
 
 
 class Test_Mapper_calculate_range_nums(unittest.TestCase):
@@ -137,3 +137,17 @@ class Test_group_overlapping_ranges(unittest.TestCase):
         input = [range(1, 8)]
         expected = input
         self.assertEqual(expected, group_overlapping_ranges(input))
+
+
+class Test_is_val_in_ranges(unittest.TestCase):
+    def test_is_val_in_ranges_positive(self):
+        input = [range(1, 3), range(5, 7), range(10, 12)]
+        val = 2
+        expected = True
+        self.assertEqual(expected, is_val_in_ranges(val, input))
+
+    def test_is_val_in_ranges_negative(self):
+        input = [range(1, 3), range(5, 7), range(10, 12)]
+        val = 200
+        expected = False
+        self.assertEqual(expected, is_val_in_ranges(val, input))

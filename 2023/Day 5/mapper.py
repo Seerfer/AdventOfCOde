@@ -39,6 +39,16 @@ class Mapper:
         else:
             return source
 
+
+    def map_reverse(self, desc):
+        ranges = [desc in r for r in self._mapping_list_desc]
+        if any(ranges):
+            r_index = ranges.index(True)
+            v_index = self.find_el(self._mapping_list_desc[r_index], desc)
+            return self._mapping_list_source[r_index][v_index]
+        else:
+            return desc
+
     @staticmethod
     def find_el(array, value) -> Optional[int]:
         if value not in array:
