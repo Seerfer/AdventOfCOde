@@ -72,15 +72,19 @@ if __name__ == "__main__":
     for s in seeds2_chunks:
         seeds2_not_grouped.append(range(s[0], s[0] + s[1]))
     seeds2 = group_overlapping_ranges(seeds2_not_grouped)
-    min_val = math.inf
-    possible_locs = mapps_dict_mappings['humidity-to-location'].mapping_list_desc
+    min_val = None
+    possible_locs = sorted(mapps_dict_mappings['humidity-to-location'].mapping_list_desc, key=lambda x:x.start)
     for lr in possible_locs:
         for l in lr:
             val = l
             for k,mapping in reversed(mapps_dict_mappings.items()):
                 val = mapping.map_reverse(val)
-            if l < min_val and is_val_in_ranges(val, seeds2):
+            if is_val_in_ranges(val, seeds2):
                 min_val = l
+                break
+        if min_val is not None:
+            break
+
     print(f"Part 2 result = {min_val}")
 
 
