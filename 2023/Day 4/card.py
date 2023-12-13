@@ -3,7 +3,9 @@ class Card:
         self.id = id
         self.card_nums = card_nums
         self.winning_nums = winning_nums
-        self.common_nums_count = len(list(set(self.card_nums).intersection(self.winning_nums)))
+        self.common_nums_count = len(
+            list(set(self.card_nums).intersection(self.winning_nums))
+        )
         self.points = self._calculate_card_points()
 
     def _calculate_card_points(self):

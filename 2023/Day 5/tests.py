@@ -1,7 +1,14 @@
 import unittest
 
 from mapper import Mapper, MappingConf
-from main import read_seeds, read_map_name, split_list_to_chunks, group_overlapping_ranges, is_overlapping, is_val_in_ranges
+from main import (
+    read_seeds,
+    read_map_name,
+    split_list_to_chunks,
+    group_overlapping_ranges,
+    is_overlapping,
+    is_val_in_ranges,
+)
 
 
 class Test_Mapper_calculate_range_nums(unittest.TestCase):

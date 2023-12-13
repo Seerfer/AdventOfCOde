@@ -15,8 +15,12 @@ class Mapper:
         self._mapping_list_source = []
         self._mapping_list_desc = []
         for mapping in mappings:
-            self._mapping_list_source.append(self.calculate_range_nums(mapping.source_start, mapping.length))
-            self._mapping_list_desc.append(self.calculate_range_nums(mapping.destination_start, mapping.length))
+            self._mapping_list_source.append(
+                self.calculate_range_nums(mapping.source_start, mapping.length)
+            )
+            self._mapping_list_desc.append(
+                self.calculate_range_nums(mapping.destination_start, mapping.length)
+            )
 
     @property
     def mapping_list_source(self):
@@ -39,7 +43,6 @@ class Mapper:
         else:
             return source
 
-
     def map_reverse(self, desc):
         ranges = [desc in r for r in self._mapping_list_desc]
         if any(ranges):
@@ -54,6 +57,3 @@ class Mapper:
         if value not in array:
             return None
         return array.index(value)
-
-
-
