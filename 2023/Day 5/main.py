@@ -78,7 +78,7 @@ if __name__ == "__main__":
         for l in lr:
             val = l
             for k,mapping in reversed(mapps_dict_mappings.items()):
-                val = mapping.map(val)
+                val = mapping.map_reverse(val)
             if l < min_val and is_val_in_ranges(val, seeds2):
                 min_val = l
     print(f"Part 2 result = {min_val}")
