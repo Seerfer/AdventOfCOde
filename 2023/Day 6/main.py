@@ -17,14 +17,19 @@ def calculate_distance(button_hold_time: int, time: int) -> int:
 
 if __name__ == "__main__":
     with open("input", "r") as f:
-        times_str, distance_str = f.read().split('\n')
+        times_str, distance_str = f.read().split("\n")
 
-    times = [int(time) for time in times_str.replace('Time:', '').split(' ') if time != '']
-    distances = [int(dist) for dist in distance_str.replace('Distance:', '').split(' ') if dist != '']
+    times = [
+        int(time) for time in times_str.replace("Time:", "").split(" ") if time != ""
+    ]
+    distances = [
+        int(dist)
+        for dist in distance_str.replace("Distance:", "").split(" ")
+        if dist != ""
+    ]
     races = [Race(distance_record=d, time=t) for t, d in zip(times, distances)]
 
     wins_possibilities_num = []
-
     for r in races:
         counter = 0
         times_possible = range(0, r.time)
@@ -36,12 +41,11 @@ if __name__ == "__main__":
     result1 = 1
     for x in wins_possibilities_num:
         result1 *= x
-
     print(f"Result for part 1: {result1}")
+
     time2 = int("".join([str(t) for t in times]))
     distance2 = int("".join(str(d) for d in distances))
     race_part_2 = Race(distance_record=distance2, time=time2)
-    print(race_part_2)
     hold_butt_margin = range(0, time2)
     result2 = 0
     for t in hold_butt_margin:
