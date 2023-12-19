@@ -22,3 +22,19 @@ if __name__ == "__main__":
     times = [int(time) for time in times_str.replace('Time:', '').split(' ') if time != '']
     distances = [int(dist) for dist in distance_str.replace('Distance:', '').split(' ') if dist != '']
     races = [Race(distance_record=d, time=t) for t, d in zip(times, distances)]
+
+    wins_possibilities_num = []
+
+    for r in races:
+        counter = 0
+        times_possible = range(0, r.time)
+        for t in times_possible:
+            dis = calculate_distance(t, r.time)
+            if dis > r.distance_record:
+                counter += 1
+        wins_possibilities_num.append(counter)
+    result = 1
+    for x in wins_possibilities_num:
+        result *= x
+
+    print(f"Result for part 1: {result}")
