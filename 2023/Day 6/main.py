@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple, Union
+from math import sqrt
 
 
 @dataclass
@@ -7,8 +8,14 @@ class Race:
     distance_record: int
     time: int
 
-def find_zeros_quadratic_func(a: int, b:int, c:int) -> Optional[Union[Tuple[int, int], int]]:
-    pass
+def find_zeros_quadratic_func(a: int, b:int, c:int) -> Optional[Union[Tuple[float, float], float]]:
+    d = b*b-4*a*c
+    if d == 0:
+        return -b/2*a
+    elif d>0:
+        return (-b + sqrt(d)) / 2 * a, (-b - sqrt(d)) / 2 * a
+    else:
+        return None
 
 
 def calculate_distance(button_hold_time: int, time: int) -> int:
