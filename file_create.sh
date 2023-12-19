@@ -33,8 +33,8 @@ if [ -f "$Year/Day $Day/main.py" ]; then
 else
   echo '
 
-    if __name__ == "__main__":
-      with open("input", "r") as f:' > "$Year/Day $Day/main.py"
+if __name__ == "__main__":
+  with open("input", "r") as f:' > "$Year/Day $Day/main.py"
 
 fi
 
@@ -45,9 +45,9 @@ else
   echo 'import unittest
 
 
-  class Test_Mapper_calculate_range_nums(unittest.TestCase):
-    def test_example_test(self):
-      self.assertEqual(2+2, 4)' > "$Year/Day $Day/tests.py"
+class Test_Mapper_calculate_range_nums(unittest.TestCase):
+  def test_example_test(self):
+    self.assertEqual(2+2, 4)' > "$Year/Day $Day/tests.py"
 fi
 
 git add "$Year/Day $Day"
