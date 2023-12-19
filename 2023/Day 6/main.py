@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional, Tuple, Union
 
 
 @dataclass
@@ -6,13 +7,14 @@ class Race:
     distance_record: int
     time: int
 
+def find_zeros_quadratic_func(a: int, b:int, c:int) -> Optional[Union[Tuple[int, int], int]]:
+    pass
+
 
 def calculate_distance(button_hold_time: int, time: int) -> int:
     if button_hold_time < 0 or time < 0:
-        raise ValueError("Button hold time and race time must be postivie numbers")
-    speed = button_hold_time
-    remain_race_time = time - button_hold_time
-    return speed * remain_race_time
+        raise ValueError("Button hold time and race time must be positive numbers")
+    return button_hold_time * (time - button_hold_time)
 
 
 if __name__ == "__main__":
