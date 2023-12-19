@@ -33,8 +33,20 @@ if __name__ == "__main__":
             if dis > r.distance_record:
                 counter += 1
         wins_possibilities_num.append(counter)
-    result = 1
+    result1 = 1
     for x in wins_possibilities_num:
-        result *= x
+        result1 *= x
 
-    print(f"Result for part 1: {result}")
+    print(f"Result for part 1: {result1}")
+    time2 = int("".join([str(t) for t in times]))
+    distance2 = int("".join(str(d) for d in distances))
+    race_part_2 = Race(distance_record=distance2, time=time2)
+    print(race_part_2)
+    hold_butt_margin = range(0, time2)
+    result2 = 0
+    for t in hold_butt_margin:
+        dis = calculate_distance(t, race_part_2.time)
+        if dis > race_part_2.distance_record:
+            result2 += 1
+
+    print(f"Result for part 2: {result2}")
