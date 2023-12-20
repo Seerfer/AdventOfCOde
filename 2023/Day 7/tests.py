@@ -147,19 +147,15 @@ class Test_Hand_compare(unittest.TestCase):
         cards2 = 'KKKK7'
         h1 = Hand(cards1, 0)
         h2 = Hand(cards2, 0)
-        expected = True
-        out = h1 > h2
-        self.assertEqual(out, expected)
+        self.assertGreater(h1, h2)
 
 
     def test_greater_than_by_high_card(self):
-        cards1 = 'KK677'
-        cards2 = 'KTJJT'
+        cards1 = '77778'
+        cards2 = '7777T'
         h1 = Hand(cards1, 0)
         h2 = Hand(cards2, 0)
-        expected = True
-        out = h1 > h2
-        self.assertEqual(out, expected)
+        self.assertGreater(h2, h1)
 
 
     def test_compare_equal(self):
@@ -167,7 +163,6 @@ class Test_Hand_compare(unittest.TestCase):
         cards2 = 'KTJJT'
         h1 = Hand(cards1, 0)
         h2 = Hand(cards2, 0)
-        expected = True
-        out = h1 == h2
-        self.assertEqual(out, expected)
+        self.assertEqual(h1, h2)
+
 
