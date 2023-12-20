@@ -2,6 +2,17 @@ import unittest
 from hand import Hand
 
 
+class Test_Hand_cards_validate(unittest.TestCase):
+    def test_Hand_cards_validate_too_many_cards(self):
+        cards = 'QQQQT4'
+        with self.assertRaises(ValueError):
+            Hand(cards, 0)
+
+    def test_Hand_cards_validate_incorrect_card(self):
+        cards = 'QQQGT4'
+        with self.assertRaises(ValueError):
+            Hand(cards, 0)
+
 class Test_Hand_check_five_of_kind(unittest.TestCase):
     def test_check_five_of_kind_positive(self):
         cards = ["Q", "Q", "Q", "Q", "Q"]
