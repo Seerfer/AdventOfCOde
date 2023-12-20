@@ -1,6 +1,7 @@
 from collections import Counter
+from functools import total_ordering
 
-
+@total_ordering
 class Hand:
     def __init__(self, hand: str, bid:int):
         self.bid = bid
@@ -52,3 +53,18 @@ class Hand:
     def check_one_pair(hand: list) -> bool:
         counter = Counter(hand)
         return any(i >= 2 for i in counter.values())
+
+    def __eq__(self, other):
+        return self.hand == other.hand
+
+
+    def __gt__(self, other):
+        cards_vals = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+        if not self._score == other._score:
+            return self._score > other._score
+        else:
+            for i in range(0,4):
+                self_hc = self.hand[i]
+                other_hc = other.hand[i]
+                if self_hc != other_hc:
+                    return cards_vals.index(self_hc) > cards_vals.index(other_hc)
