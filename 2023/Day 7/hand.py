@@ -3,9 +3,9 @@ from functools import total_ordering
 
 @total_ordering
 class Hand:
-    def __init__(self, hand: str, bid:int):
+    def __init__(self, cards: str, bid:int):
         self.bid = bid
-        self.hand = list(hand)
+        self.cards = list(cards)
         self._score = self.calculate_calculate_score()
 
     def calculate_calculate_score(self):
@@ -19,7 +19,7 @@ class Hand:
         ]
         i = 6
         for func in order:
-            if func(self.hand):
+            if func(self.cards):
                 return i
             else:
                 i -= 1
@@ -55,7 +55,7 @@ class Hand:
         return any(i >= 2 for i in counter.values())
 
     def __eq__(self, other):
-        return self.hand == other.hand
+        return self.cards == other.cards
 
 
     def __gt__(self, other):
@@ -64,14 +64,14 @@ class Hand:
             return self._score > other._score
         else:
             for i in range(0,4):
-                self_hc = self.hand[i]
-                other_hc = other.hand[i]
+                self_hc = self.cards[i]
+                other_hc = other.cards[i]
                 if self_hc != other_hc:
                     return cards_vals.index(self_hc) > cards_vals.index(other_hc)
 
 
     def __str__(self):
-        return "".join(self.hand)
+        return "".join(self.cards)
 
 
     def __repr__(self):
