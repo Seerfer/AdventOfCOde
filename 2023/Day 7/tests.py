@@ -142,8 +142,8 @@ class Test_Hand_compare(unittest.TestCase):
 
 
     def test_greater_than_by_high_card(self):
-        cards1 = 'KTJJT'
-        cards2 = 'KK677'
+        cards1 = 'KK677'
+        cards2 = 'KTJJT'
         h1 = Hand(cards1, 0)
         h2 = Hand(cards2, 0)
         expected = True
