@@ -34,7 +34,8 @@ else
   echo '
 
 if __name__ == "__main__":
-  with open("input", "r") as f:' > "$Year/Day $Day/main.py"
+  with open("input", "r") as f:
+    pass' > "$Year/Day $Day/main.py"
 
 fi
 
