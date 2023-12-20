@@ -3,12 +3,19 @@ from functools import total_ordering
 
 @total_ordering
 class Hand:
+
     def __init__(self, cards: str, bid:int):
-        if len(cards) != 5:
-            raise ValueError(f"5 cards are required, {len(cards)} were provided")
+        self._validate_cards(cards)
         self.bid = bid
         self.cards = list(cards)
         self._score = self.calculate_calculate_score()
+
+    @staticmethod
+    def _validate_cards(cards):
+        if len(cards) != 5:
+            raise ValueError(f"5 cards are required, {len(cards)} were provided")
+        if set(cards).issuperset({'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'}):
+            raise ValueError(f"Accepted cards are: '2','3','4','5','6','7','8','9','T','J','Q','K','A'")
 
     def calculate_calculate_score(self):
         order = [
