@@ -68,3 +68,11 @@ class Hand:
                 other_hc = other.hand[i]
                 if self_hc != other_hc:
                     return cards_vals.index(self_hc) > cards_vals.index(other_hc)
+
+
+    def __str__(self):
+        return "".join(self.hand)
+
+
+    def __repr__(self):
+        return str(self)
