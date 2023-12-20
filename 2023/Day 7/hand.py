@@ -4,6 +4,8 @@ from functools import total_ordering
 @total_ordering
 class Hand:
     def __init__(self, cards: str, bid:int):
+        if len(cards) != 5:
+            raise ValueError(f"5 cards are required, {len(cards)} were provided")
         self.bid = bid
         self.cards = list(cards)
         self._score = self.calculate_calculate_score()
