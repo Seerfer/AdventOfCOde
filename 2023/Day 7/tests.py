@@ -119,12 +119,12 @@ class Test_Hand_calculate_hand_score(unittest.TestCase):
 
     def test_calculate_hand_score_four_kind(self):
         cards = 'KKKK7'
-        expected = 4
+        expected = 5
         h = Hand(cards, 0)
         self.assertEqual(h._score, expected)
 
     def test_calculate_hand_score_five_kind(self):
         cards = 'KKKKK'
-        expected = 5
+        expected = 6
         h = Hand(cards, 0)
         self.assertEqual(h._score, expected)
