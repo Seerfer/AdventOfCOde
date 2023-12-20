@@ -82,3 +82,49 @@ class Test_Hand_check_one_pair(unittest.TestCase):
         cards = ["Q", "A", "5", "4", "3"]
         expected = False
         self.assertEqual(Hand.check_one_pair(cards), expected)
+
+
+class Test_Hand_calculate_hand_score(unittest.TestCase):
+    def test_calculate_hand_score_high_card(self):
+        cards = '32T4K'
+        expected = 0
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
+
+    def test_calculate_hand_score_one_pair(self):
+        cards = '32T3K'
+        expected = 1
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
+
+
+    def test_calculate_hand_score_two_pair(self):
+        cards = 'KK677'
+        expected = 2
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
+
+
+    def test_calculate_hand_score_three_kind(self):
+        cards = 'KKK87'
+        expected = 3
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
+
+    def test_calculate_hand_score_full_house(self):
+        cards = 'KKK77'
+        expected = 4
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
+
+    def test_calculate_hand_score_four_kind(self):
+        cards = 'KKKK7'
+        expected = 4
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
+
+    def test_calculate_hand_score_five_kind(self):
+        cards = 'KKKKK'
+        expected = 5
+        h = Hand(cards, 0)
+        self.assertEqual(h._score, expected)
