@@ -130,7 +130,7 @@ class Test_Hand_calculate_hand_score(unittest.TestCase):
         self.assertEqual(h._score, expected)
 
 
-class Test_Hand_greater_than(unittest.TestCase):
+class Test_Hand_compare(unittest.TestCase):
     def test_greater_than_by_combination(self):
         cards1 = 'KKKKK'
         cards2 = 'KKKK7'
@@ -149,3 +149,14 @@ class Test_Hand_greater_than(unittest.TestCase):
         expected = True
         out = h1 > h2
         self.assertEqual(out, expected)
+
+
+    def test_compare_equal(self):
+        cards1 = 'KTJJT'
+        cards2 = 'KTJJT'
+        h1 = Hand(cards1, 0)
+        h2 = Hand(cards2, 0)
+        expected = True
+        out = h1 == h2
+        self.assertEqual(out, expected)
+
