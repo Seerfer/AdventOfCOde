@@ -16,7 +16,8 @@ class Hand:
 
     @staticmethod
     def check_full_house(hand: list) -> bool:
-        pass
+        counter = Counter(hand)
+        return set(counter.values()) == {2, 3}
 
     @staticmethod
     def check_three_of_kind(hand: list) -> bool:
@@ -25,8 +26,10 @@ class Hand:
 
     @staticmethod
     def check_two_pair(hand: list) -> bool:
-        pass
+        counter = Counter(hand)
+        return sum([c for c in counter.values() if c>1]) >= 4
 
     @staticmethod
     def check_one_pair(hand: list) -> bool:
-        pass
+        counter = Counter(hand)
+        return any(i >= 2 for i in counter.values())
