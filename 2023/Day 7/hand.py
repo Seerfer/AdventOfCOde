@@ -20,7 +20,8 @@ class Hand:
 
     @staticmethod
     def check_three_of_kind(hand: list) -> bool:
-        pass
+        counter = Counter(hand)
+        return any(i >= 3 for i in counter.values())
 
     @staticmethod
     def check_two_pair(hand: list) -> bool:
