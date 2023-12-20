@@ -72,7 +72,7 @@ class Hand:
         if not self._score == other._score:
             return self._score > other._score
         else:
-            for i in range(0,4):
+            for i in range(0,5):
                 self_hc = self.cards[i]
                 other_hc = other.cards[i]
                 if self_hc != other_hc:
