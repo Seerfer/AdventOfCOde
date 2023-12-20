@@ -128,3 +128,24 @@ class Test_Hand_calculate_hand_score(unittest.TestCase):
         expected = 6
         h = Hand(cards, 0)
         self.assertEqual(h._score, expected)
+
+
+class Test_Hand_greater_than(unittest.TestCase):
+    def test_greater_than_by_combination(self):
+        cards1 = 'KKKKK'
+        cards2 = 'KKKK7'
+        h1 = Hand(cards1, 0)
+        h2 = Hand(cards2, 0)
+        expected = True
+        out = h1 > h2
+        self.assertEqual(out, expected)
+
+
+    def test_greater_than_by_high_card(self):
+        cards1 = 'KTJJT'
+        cards2 = 'KK677'
+        h1 = Hand(cards1, 0)
+        h2 = Hand(cards2, 0)
+        expected = True
+        out = h1 > h2
+        self.assertEqual(out, expected)
